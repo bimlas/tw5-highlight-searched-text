@@ -1,0 +1,10 @@
+image: node
+
+pages:
+  script:
+    # Serve a compressed version to speed up the loading
+    # https://gitlab.com/gitlab-org/gitlab-pages/merge_requests/25
+    - gzip --recursive --keep
+  artifacts:
+    paths:
+    - public
