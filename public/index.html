@@ -159,6 +159,8 @@ Error message and password prompt
 
 <li>$:/state/tab-1749438307</li>
 
+<li>$:/state/tab/sidebar--595412856</li>
+
 <li>$:/StoryList</li>
 
 <li>$:/temp/advancedsearch</li>
@@ -174,6 +176,8 @@ Error message and password prompt
 <li>$:/themes/tiddlywiki/vanilla/options/sidebarlayout</li>
 
 <li>HighlightSearchedText</li>
+
+<li>Mark.js</li>
 
 <li>README</li>
 
@@ -9406,11 +9410,14 @@ Error message and password prompt
 <div created="20191108105149767" modified="20191108105149767" title="$:/state/tab-1749438307">
 <pre>$:/core/ui/ControlPanel/Appearance</pre>
 </div>
-<div created="20191108124439866" list="README HighlightSearchedText" modified="20191108124442713" title="$:/StoryList">
+<div created="20191111064748492" modified="20191111064751286" title="$:/state/tab/sidebar--595412856">
+<pre>$:/core/ui/SideBar/Open</pre>
+</div>
+<div list="README HighlightSearchedText Mark.js" title="$:/StoryList">
 <pre></pre>
 </div>
-<div created="20191108124439864" modified="20191108124439864" title="$:/temp/advancedsearch">
-<pre>favicon.js</pre>
+<div created="20191108124439864" modified="20191110212937259" title="$:/temp/advancedsearch">
+<pre>import</pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
 <pre>{
@@ -9425,7 +9432,7 @@ Error message and password prompt
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
-            &quot;text&quot;: &quot;file:///home/laci/Let%C3%B6lt%C3%A9sek/index.html&quot;
+            &quot;text&quot;: &quot;file:///media/laci/cuccok/src/tw5-highlight-searched-text/public/index.html&quot;
         },
         &quot;$:/info/url/host&quot;: {
             &quot;title&quot;: &quot;$:/info/url/host&quot;,
@@ -9445,7 +9452,7 @@ Error message and password prompt
         },
         &quot;$:/info/url/pathname&quot;: {
             &quot;title&quot;: &quot;$:/info/url/pathname&quot;,
-            &quot;text&quot;: &quot;/home/laci/Let%C3%B6lt%C3%A9sek/index.html&quot;
+            &quot;text&quot;: &quot;/media/laci/cuccok/src/tw5-highlight-searched-text/public/index.html&quot;
         },
         &quot;$:/info/url/search&quot;: {
             &quot;title&quot;: &quot;$:/info/url/search&quot;,
@@ -9470,7 +9477,7 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20191108105103595" modified="20191108124439864" title="$:/temp/search">
+<div created="20191108105103595" modified="20191111070518266" title="$:/temp/search">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.21">
@@ -9585,7 +9592,7 @@ Error message and password prompt
 <div created="20191108105153728" modified="20191108105153728" title="$:/themes/tiddlywiki/vanilla/options/sidebarlayout">
 <pre>fluid-fixed</pre>
 </div>
-<div created="20181213073221274" modified="20191108123647207" module-type="startup" tags="$:/tags/StartupAction/Browser" title="HighlightSearchedText" type="application/javascript">
+<div created="20181213073221274" modified="20191111065243981" module-type="startup" tags="$:/tags/StartupAction/Browser" title="HighlightSearchedText" type="application/javascript">
 <pre>/*\
 BASED ON FAVICON.JS
 \*/
@@ -9614,8 +9621,6 @@ BASED ON FAVICON.JS
     });
   };
 
-  var prevSearchedText = &quot;&quot;;
-
   function searchPopupBecameHidden(title, value) {
     return title.startsWith(&quot;$:/state/popup/search-dropdown&quot;) &amp;&amp; value.deleted 
   }
@@ -9624,43 +9629,39 @@ BASED ON FAVICON.JS
     return title === &quot;$:/temp/search&quot; &amp;&amp; $tw.wiki.getTiddlerText('$:/temp/search') === '' 
   };
 
+  var 
+    Mark = require('Mark.js'),
+    markInstance;
+
   function updateHighlighting() {
       var searchedText = $tw.wiki.getTiddlerText('$:/temp/search');
-
-      if (window.find &amp;&amp; window.getSelection &amp;&amp; document.designMode) {
-        doSearch(prevSearchedText, &quot;transparent&quot;);
-        doSearch(searchedText, &quot;yellow&quot;);
-        prevSearchedText = searchedText;
-      }
+      if(!markInstance) markInstance = new Mark(document.getElementsByClassName(&quot;tc-story-river&quot;)[0])
+      markInstance.unmark();
+      if(searchedText !== '') markInstance.mark(searchedText);
   }
-
-  /*
-    Found at https://stackoverflow.com/a/47440755/2520275
-    */
-  function doSearch(text, backgroundColor) {
-    var originalScrollY = window.scrollY;
-
-    document.designMode = &quot;on&quot;;
-    var sel = window.getSelection();
-    sel.collapse(document.getElementsByClassName(&quot;tc-story-river&quot;)[0], 0);
-
-    while (window.find(text)) {
-      document.execCommand(&quot;HiliteColor&quot;, false, backgroundColor);
-      sel.collapseToEnd();
-    }
-
-    document.designMode = &quot;off&quot;;
-    scroll(0, originalScrollY);
-  }
-
 })();</pre>
 </div>
-<div created="20191108104757627" modified="20191108105546482" tags="" title="README">
+<div created="20191110212729761" modified="20191111064619355" module-type="library" tags="" title="Mark.js" type="application/javascript">
+<pre>/*\
+title: Mark.js
+type: application/javascript
+module-type: library
+
+* mark.js v8.11.1
+* https://markjs.io/
+* Copyright (c) 2014–2018, Julian Kühnel
+* Released under the MIT license https://git.io/vwTVl
+
+\*/
+
+!function(e,t){&quot;object&quot;==typeof exports&amp;&amp;&quot;undefined&quot;!=typeof module?module.exports=t():&quot;function&quot;==typeof define&amp;&amp;define.amd?define(t):e.Mark=t()}(this,function(){&quot;use strict&quot;;var e=&quot;function&quot;==typeof Symbol&amp;&amp;&quot;symbol&quot;==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&amp;&amp;&quot;function&quot;==typeof Symbol&amp;&amp;e.constructor===Symbol&amp;&amp;e!==Symbol.prototype?&quot;symbol&quot;:typeof e},t=function(e,t){if(!(e instanceof t))throw new TypeError(&quot;Cannot call a class as a function&quot;)},n=function(){function e(e,t){for(var n=0;n&lt;t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,&quot;value&quot;in r&amp;&amp;(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&amp;&amp;e(t.prototype,n),r&amp;&amp;e(t,r),t}}(),r=Object.assign||function(e){for(var t=1;t&lt;arguments.length;t++){var n=arguments[t];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&amp;&amp;(e[r]=n[r])}return e},i=function(){function e(n){var r=!(arguments.length&gt;1&amp;&amp;void 0!==arguments[1])||arguments[1],i=arguments.length&gt;2&amp;&amp;void 0!==arguments[2]?arguments[2]:[],o=arguments.length&gt;3&amp;&amp;void 0!==arguments[3]?arguments[3]:5e3;t(this,e),this.ctx=n,this.iframes=r,this.exclude=i,this.iframesTimeout=o}return n(e,[{key:&quot;getContexts&quot;,value:function(){var e=[];return(void 0!==this.ctx&amp;&amp;this.ctx?NodeList.prototype.isPrototypeOf(this.ctx)?Array.prototype.slice.call(this.ctx):Array.isArray(this.ctx)?this.ctx:&quot;string&quot;==typeof this.ctx?Array.prototype.slice.call(document.querySelectorAll(this.ctx)):[this.ctx]:[]).forEach(function(t){var n=e.filter(function(e){return e.contains(t)}).length&gt;0;-1!==e.indexOf(t)||n||e.push(t)}),e}},{key:&quot;getIframeContents&quot;,value:function(e,t){var n=arguments.length&gt;2&amp;&amp;void 0!==arguments[2]?arguments[2]:function(){},r=void 0;try{var i=e.contentWindow;if(r=i.document,!i||!r)throw new Error(&quot;iframe inaccessible&quot;)}catch(e){n()}r&amp;&amp;t(r)}},{key:&quot;isIframeBlank&quot;,value:function(e){var t=e.getAttribute(&quot;src&quot;).trim();return&quot;about:blank&quot;===e.contentWindow.location.href&amp;&amp;&quot;about:blank&quot;!==t&amp;&amp;t}},{key:&quot;observeIframeLoad&quot;,value:function(e,t,n){var r=this,i=!1,o=null,a=function a(){if(!i){i=!0,clearTimeout(o);try{r.isIframeBlank(e)||(e.removeEventListener(&quot;load&quot;,a),r.getIframeContents(e,t,n))}catch(e){n()}}};e.addEventListener(&quot;load&quot;,a),o=setTimeout(a,this.iframesTimeout)}},{key:&quot;onIframeReady&quot;,value:function(e,t,n){try{&quot;complete&quot;===e.contentWindow.document.readyState?this.isIframeBlank(e)?this.observeIframeLoad(e,t,n):this.getIframeContents(e,t,n):this.observeIframeLoad(e,t,n)}catch(e){n()}}},{key:&quot;waitForIframes&quot;,value:function(e,t){var n=this,r=0;this.forEachIframe(e,function(){return!0},function(e){r++,n.waitForIframes(e.querySelector(&quot;html&quot;),function(){--r||t()})},function(e){e||t()})}},{key:&quot;forEachIframe&quot;,value:function(t,n,r){var i=this,o=arguments.length&gt;3&amp;&amp;void 0!==arguments[3]?arguments[3]:function(){},a=t.querySelectorAll(&quot;iframe&quot;),s=a.length,c=0;a=Array.prototype.slice.call(a);var u=function(){--s&lt;=0&amp;&amp;o(c)};s||u(),a.forEach(function(t){e.matches(t,i.exclude)?u():i.onIframeReady(t,function(e){n(t)&amp;&amp;(c++,r(e)),u()},u)})}},{key:&quot;createIterator&quot;,value:function(e,t,n){return document.createNodeIterator(e,t,n,!1)}},{key:&quot;createInstanceOnIframe&quot;,value:function(t){return new e(t.querySelector(&quot;html&quot;),this.iframes)}},{key:&quot;compareNodeIframe&quot;,value:function(e,t,n){if(e.compareDocumentPosition(n)&amp;Node.DOCUMENT_POSITION_PRECEDING){if(null===t)return!0;if(t.compareDocumentPosition(n)&amp;Node.DOCUMENT_POSITION_FOLLOWING)return!0}return!1}},{key:&quot;getIteratorNode&quot;,value:function(e){var t=e.previousNode();return{prevNode:t,node:null===t?e.nextNode():e.nextNode()&amp;&amp;e.nextNode()}}},{key:&quot;checkIframeFilter&quot;,value:function(e,t,n,r){var i=!1,o=!1;return r.forEach(function(e,t){e.val===n&amp;&amp;(i=t,o=e.handled)}),this.compareNodeIframe(e,t,n)?(!1!==i||o?!1===i||o||(r[i].handled=!0):r.push({val:n,handled:!0}),!0):(!1===i&amp;&amp;r.push({val:n,handled:!1}),!1)}},{key:&quot;handleOpenIframes&quot;,value:function(e,t,n,r){var i=this;e.forEach(function(e){e.handled||i.getIframeContents(e.val,function(e){i.createInstanceOnIframe(e).forEachNode(t,n,r)})})}},{key:&quot;iterateThroughNodes&quot;,value:function(e,t,n,r,i){for(var o,a=this,s=this.createIterator(t,e,r),c=[],u=[],l=void 0,h=void 0;void 0,o=a.getIteratorNode(s),h=o.prevNode,l=o.node;)this.iframes&amp;&amp;this.forEachIframe(t,function(e){return a.checkIframeFilter(l,h,e,c)},function(t){a.createInstanceOnIframe(t).forEachNode(e,function(e){return u.push(e)},r)}),u.push(l);u.forEach(function(e){n(e)}),this.iframes&amp;&amp;this.handleOpenIframes(c,e,n,r),i()}},{key:&quot;forEachNode&quot;,value:function(e,t,n){var r=this,i=arguments.length&gt;3&amp;&amp;void 0!==arguments[3]?arguments[3]:function(){},o=this.getContexts(),a=o.length;a||i(),o.forEach(function(o){var s=function(){r.iterateThroughNodes(e,o,t,n,function(){--a&lt;=0&amp;&amp;i()})};r.iframes?r.waitForIframes(o,s):s()})}}],[{key:&quot;matches&quot;,value:function(e,t){var n=&quot;string&quot;==typeof t?[t]:t,r=e.matches||e.matchesSelector||e.msMatchesSelector||e.mozMatchesSelector||e.oMatchesSelector||e.webkitMatchesSelector;if(r){var i=!1;return n.every(function(t){return!r.call(e,t)||(i=!0,!1)}),i}return!1}}]),e}(),o=function(){function o(e){t(this,o),this.ctx=e,this.ie=!1;var n=window.navigator.userAgent;(n.indexOf(&quot;MSIE&quot;)&gt;-1||n.indexOf(&quot;Trident&quot;)&gt;-1)&amp;&amp;(this.ie=!0)}return n(o,[{key:&quot;log&quot;,value:function(t){var n=arguments.length&gt;1&amp;&amp;void 0!==arguments[1]?arguments[1]:&quot;debug&quot;,r=this.opt.log;this.opt.debug&amp;&amp;&quot;object&quot;===(void 0===r?&quot;undefined&quot;:e(r))&amp;&amp;&quot;function&quot;==typeof r[n]&amp;&amp;r[n](&quot;mark.js: &quot;+t)}},{key:&quot;escapeStr&quot;,value:function(e){return e.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g,&quot;\\$&amp;&quot;)}},{key:&quot;createRegExp&quot;,value:function(e){return&quot;disabled&quot;!==this.opt.wildcards&amp;&amp;(e=this.setupWildcardsRegExp(e)),e=this.escapeStr(e),Object.keys(this.opt.synonyms).length&amp;&amp;(e=this.createSynonymsRegExp(e)),(this.opt.ignoreJoiners||this.opt.ignorePunctuation.length)&amp;&amp;(e=this.setupIgnoreJoinersRegExp(e)),this.opt.diacritics&amp;&amp;(e=this.createDiacriticsRegExp(e)),e=this.createMergedBlanksRegExp(e),(this.opt.ignoreJoiners||this.opt.ignorePunctuation.length)&amp;&amp;(e=this.createJoinersRegExp(e)),&quot;disabled&quot;!==this.opt.wildcards&amp;&amp;(e=this.createWildcardsRegExp(e)),e=this.createAccuracyRegExp(e)}},{key:&quot;createSynonymsRegExp&quot;,value:function(e){var t=this.opt.synonyms,n=this.opt.caseSensitive?&quot;&quot;:&quot;i&quot;,r=this.opt.ignoreJoiners||this.opt.ignorePunctuation.length?&quot;\0&quot;:&quot;&quot;;for(var i in t)if(t.hasOwnProperty(i)){var o=t[i],a=&quot;disabled&quot;!==this.opt.wildcards?this.setupWildcardsRegExp(i):this.escapeStr(i),s=&quot;disabled&quot;!==this.opt.wildcards?this.setupWildcardsRegExp(o):this.escapeStr(o);&quot;&quot;!==a&amp;&amp;&quot;&quot;!==s&amp;&amp;(e=e.replace(new RegExp(&quot;(&quot;+this.escapeStr(a)+&quot;|&quot;+this.escapeStr(s)+&quot;)&quot;,&quot;gm&quot;+n),r+&quot;(&quot;+this.processSynomyms(a)+&quot;|&quot;+this.processSynomyms(s)+&quot;)&quot;+r))}return e}},{key:&quot;processSynomyms&quot;,value:function(e){return(this.opt.ignoreJoiners||this.opt.ignorePunctuation.length)&amp;&amp;(e=this.setupIgnoreJoinersRegExp(e)),e}},{key:&quot;setupWildcardsRegExp&quot;,value:function(e){return(e=e.replace(/(?:\\)*\?/g,function(e){return&quot;\\&quot;===e.charAt(0)?&quot;?&quot;:&quot;&quot;})).replace(/(?:\\)*\*/g,function(e){return&quot;\\&quot;===e.charAt(0)?&quot;*&quot;:&quot;&quot;})}},{key:&quot;createWildcardsRegExp&quot;,value:function(e){var t=&quot;withSpaces&quot;===this.opt.wildcards;return e.replace(/\u0001/g,t?&quot;[\\S\\s]?&quot;:&quot;\\S?&quot;).replace(/\u0002/g,t?&quot;[\\S\\s]*?&quot;:&quot;\\S*&quot;)}},{key:&quot;setupIgnoreJoinersRegExp&quot;,value:function(e){return e.replace(/[^(|)\\]/g,function(e,t,n){var r=n.charAt(t+1);return/[(|)\\]/.test(r)||&quot;&quot;===r?e:e+&quot;\0&quot;})}},{key:&quot;createJoinersRegExp&quot;,value:function(e){var t=[],n=this.opt.ignorePunctuation;return Array.isArray(n)&amp;&amp;n.length&amp;&amp;t.push(this.escapeStr(n.join(&quot;&quot;))),this.opt.ignoreJoiners&amp;&amp;t.push(&quot;\\u00ad\\u200b\\u200c\\u200d&quot;),t.length?e.split(/\u0000+/).join(&quot;[&quot;+t.join(&quot;&quot;)+&quot;]*&quot;):e}},{key:&quot;createDiacriticsRegExp&quot;,value:function(e){var t=this.opt.caseSensitive?&quot;&quot;:&quot;i&quot;,n=this.opt.caseSensitive?[&quot;aàáảãạăằắẳẵặâầấẩẫậäåāą&quot;,&quot;AÀÁẢÃẠĂẰẮẲẴẶÂẦẤẨẪẬÄÅĀĄ&quot;,&quot;cçćč&quot;,&quot;CÇĆČ&quot;,&quot;dđď&quot;,&quot;DĐĎ&quot;,&quot;eèéẻẽẹêềếểễệëěēę&quot;,&quot;EÈÉẺẼẸÊỀẾỂỄỆËĚĒĘ&quot;,&quot;iìíỉĩịîïī&quot;,&quot;IÌÍỈĨỊÎÏĪ&quot;,&quot;lł&quot;,&quot;LŁ&quot;,&quot;nñňń&quot;,&quot;NÑŇŃ&quot;,&quot;oòóỏõọôồốổỗộơởỡớờợöøō&quot;,&quot;OÒÓỎÕỌÔỒỐỔỖỘƠỞỠỚỜỢÖØŌ&quot;,&quot;rř&quot;,&quot;RŘ&quot;,&quot;sšśșş&quot;,&quot;SŠŚȘŞ&quot;,&quot;tťțţ&quot;,&quot;TŤȚŢ&quot;,&quot;uùúủũụưừứửữựûüůū&quot;,&quot;UÙÚỦŨỤƯỪỨỬỮỰÛÜŮŪ&quot;,&quot;yýỳỷỹỵÿ&quot;,&quot;YÝỲỶỸỴŸ&quot;,&quot;zžżź&quot;,&quot;ZŽŻŹ&quot;]:[&quot;aàáảãạăằắẳẵặâầấẩẫậäåāąAÀÁẢÃẠĂẰẮẲẴẶÂẦẤẨẪẬÄÅĀĄ&quot;,&quot;cçćčCÇĆČ&quot;,&quot;dđďDĐĎ&quot;,&quot;eèéẻẽẹêềếểễệëěēęEÈÉẺẼẸÊỀẾỂỄỆËĚĒĘ&quot;,&quot;iìíỉĩịîïīIÌÍỈĨỊÎÏĪ&quot;,&quot;lłLŁ&quot;,&quot;nñňńNÑŇŃ&quot;,&quot;oòóỏõọôồốổỗộơởỡớờợöøōOÒÓỎÕỌÔỒỐỔỖỘƠỞỠỚỜỢÖØŌ&quot;,&quot;rřRŘ&quot;,&quot;sšśșşSŠŚȘŞ&quot;,&quot;tťțţTŤȚŢ&quot;,&quot;uùúủũụưừứửữựûüůūUÙÚỦŨỤƯỪỨỬỮỰÛÜŮŪ&quot;,&quot;yýỳỷỹỵÿYÝỲỶỸỴŸ&quot;,&quot;zžżźZŽŻŹ&quot;],r=[];return e.split(&quot;&quot;).forEach(function(i){n.every(function(n){if(-1!==n.indexOf(i)){if(r.indexOf(n)&gt;-1)return!1;e=e.replace(new RegExp(&quot;[&quot;+n+&quot;]&quot;,&quot;gm&quot;+t),&quot;[&quot;+n+&quot;]&quot;),r.push(n)}return!0})}),e}},{key:&quot;createMergedBlanksRegExp&quot;,value:function(e){return e.replace(/[\s]+/gim,&quot;[\\s]+&quot;)}},{key:&quot;createAccuracyRegExp&quot;,value:function(e){var t=this,n=this.opt.accuracy,r=&quot;string&quot;==typeof n?n:n.value,i=&quot;&quot;;switch((&quot;string&quot;==typeof n?[]:n.limiters).forEach(function(e){i+=&quot;|&quot;+t.escapeStr(e)}),r){case&quot;partially&quot;:default:return&quot;()(&quot;+e+&quot;)&quot;;case&quot;complementary&quot;:return&quot;()([^&quot;+(i=&quot;\\s&quot;+(i||this.escapeStr(&quot;!\&quot;#$%&amp;'()*+,-./:;&lt;=&gt;?@[\\]^_`{|}~¡¿&quot;)))+&quot;]*&quot;+e+&quot;[^&quot;+i+&quot;]*)&quot;;case&quot;exactly&quot;:return&quot;(^|\\s&quot;+i+&quot;)(&quot;+e+&quot;)(?=$|\\s&quot;+i+&quot;)&quot;}}},{key:&quot;getSeparatedKeywords&quot;,value:function(e){var t=this,n=[];return e.forEach(function(e){t.opt.separateWordSearch?e.split(&quot; &quot;).forEach(function(e){e.trim()&amp;&amp;-1===n.indexOf(e)&amp;&amp;n.push(e)}):e.trim()&amp;&amp;-1===n.indexOf(e)&amp;&amp;n.push(e)}),{keywords:n.sort(function(e,t){return t.length-e.length}),length:n.length}}},{key:&quot;isNumeric&quot;,value:function(e){return Number(parseFloat(e))==e}},{key:&quot;checkRanges&quot;,value:function(e){var t=this;if(!Array.isArray(e)||&quot;[object Object]&quot;!==Object.prototype.toString.call(e[0]))return this.log(&quot;markRanges() will only accept an array of objects&quot;),this.opt.noMatch(e),[];var n=[],r=0;return e.sort(function(e,t){return e.start-t.start}).forEach(function(e){var i=t.callNoMatchOnInvalidRanges(e,r),o=i.start,a=i.end;i.valid&amp;&amp;(e.start=o,e.length=a-o,n.push(e),r=a)}),n}},{key:&quot;callNoMatchOnInvalidRanges&quot;,value:function(e,t){var n=void 0,r=void 0,i=!1;return e&amp;&amp;void 0!==e.start?(r=(n=parseInt(e.start,10))+parseInt(e.length,10),this.isNumeric(e.start)&amp;&amp;this.isNumeric(e.length)&amp;&amp;r-t&gt;0&amp;&amp;r-n&gt;0?i=!0:(this.log(&quot;Ignoring invalid or overlapping range: &quot;+JSON.stringify(e)),this.opt.noMatch(e))):(this.log(&quot;Ignoring invalid range: &quot;+JSON.stringify(e)),this.opt.noMatch(e)),{start:n,end:r,valid:i}}},{key:&quot;checkWhitespaceRanges&quot;,value:function(e,t,n){var r=void 0,i=!0,o=n.length,a=t-o,s=parseInt(e.start,10)-a;return(r=(s=s&gt;o?o:s)+parseInt(e.length,10))&gt;o&amp;&amp;(r=o,this.log(&quot;End range automatically set to the max value of &quot;+o)),s&lt;0||r-s&lt;0||s&gt;o||r&gt;o?(i=!1,this.log(&quot;Invalid range: &quot;+JSON.stringify(e)),this.opt.noMatch(e)):&quot;&quot;===n.substring(s,r).replace(/\s+/g,&quot;&quot;)&amp;&amp;(i=!1,this.log(&quot;Skipping whitespace only range: &quot;+JSON.stringify(e)),this.opt.noMatch(e)),{start:s,end:r,valid:i}}},{key:&quot;getTextNodes&quot;,value:function(e){var t=this,n=&quot;&quot;,r=[];this.iterator.forEachNode(NodeFilter.SHOW_TEXT,function(e){r.push({start:n.length,end:(n+=e.textContent).length,node:e})},function(e){return t.matchesExclude(e.parentNode)?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT},function(){e({value:n,nodes:r})})}},{key:&quot;matchesExclude&quot;,value:function(e){return i.matches(e,this.opt.exclude.concat([&quot;script&quot;,&quot;style&quot;,&quot;title&quot;,&quot;head&quot;,&quot;html&quot;]))}},{key:&quot;wrapRangeInTextNode&quot;,value:function(e,t,n){var r=this.opt.element?this.opt.element:&quot;mark&quot;,i=e.splitText(t),o=i.splitText(n-t),a=document.createElement(r);return a.setAttribute(&quot;data-markjs&quot;,&quot;true&quot;),this.opt.className&amp;&amp;a.setAttribute(&quot;class&quot;,this.opt.className),a.textContent=i.textContent,i.parentNode.replaceChild(a,i),o}},{key:&quot;wrapRangeInMappedTextNode&quot;,value:function(e,t,n,r,i){var o=this;e.nodes.every(function(a,s){var c=e.nodes[s+1];if(void 0===c||c.start&gt;t){if(!r(a.node))return!1;var u=t-a.start,l=(n&gt;a.end?a.end:n)-a.start,h=e.value.substr(0,a.start),f=e.value.substr(l+a.start);if(a.node=o.wrapRangeInTextNode(a.node,u,l),e.value=h+f,e.nodes.forEach(function(t,n){n&gt;=s&amp;&amp;(e.nodes[n].start&gt;0&amp;&amp;n!==s&amp;&amp;(e.nodes[n].start-=l),e.nodes[n].end-=l)}),n-=l,i(a.node.previousSibling,a.start),!(n&gt;a.end))return!1;t=a.end}return!0})}},{key:&quot;wrapMatches&quot;,value:function(e,t,n,r,i){var o=this,a=0===t?0:t+1;this.getTextNodes(function(t){t.nodes.forEach(function(t){t=t.node;for(var i=void 0;null!==(i=e.exec(t.textContent))&amp;&amp;&quot;&quot;!==i[a];)if(n(i[a],t)){var s=i.index;if(0!==a)for(var c=1;c&lt;a;c++)s+=i[c].length;t=o.wrapRangeInTextNode(t,s,s+i[a].length),r(t.previousSibling),e.lastIndex=0}}),i()})}},{key:&quot;wrapMatchesAcrossElements&quot;,value:function(e,t,n,r,i){var o=this,a=0===t?0:t+1;this.getTextNodes(function(t){for(var s=void 0;null!==(s=e.exec(t.value))&amp;&amp;&quot;&quot;!==s[a];){var c=s.index;if(0!==a)for(var u=1;u&lt;a;u++)c+=s[u].length;var l=c+s[a].length;o.wrapRangeInMappedTextNode(t,c,l,function(e){return n(s[a],e)},function(t,n){e.lastIndex=n,r(t)})}i()})}},{key:&quot;wrapRangeFromIndex&quot;,value:function(e,t,n,r){var i=this;this.getTextNodes(function(o){var a=o.value.length;e.forEach(function(e,r){var s=i.checkWhitespaceRanges(e,a,o.value),c=s.start,u=s.end;s.valid&amp;&amp;i.wrapRangeInMappedTextNode(o,c,u,function(n){return t(n,e,o.value.substring(c,u),r)},function(t){n(t,e)})}),r()})}},{key:&quot;unwrapMatches&quot;,value:function(e){for(var t=e.parentNode,n=document.createDocumentFragment();e.firstChild;)n.appendChild(e.removeChild(e.firstChild));t.replaceChild(n,e),this.ie?this.normalizeTextNode(t):t.normalize()}},{key:&quot;normalizeTextNode&quot;,value:function(e){if(e){if(3===e.nodeType)for(;e.nextSibling&amp;&amp;3===e.nextSibling.nodeType;)e.nodeValue+=e.nextSibling.nodeValue,e.parentNode.removeChild(e.nextSibling);else this.normalizeTextNode(e.firstChild);this.normalizeTextNode(e.nextSibling)}}},{key:&quot;markRegExp&quot;,value:function(e,t){var n=this;this.opt=t,this.log('Searching with expression &quot;'+e+'&quot;');var r=0,i=&quot;wrapMatches&quot;;this.opt.acrossElements&amp;&amp;(i=&quot;wrapMatchesAcrossElements&quot;),this[i](e,this.opt.ignoreGroups,function(e,t){return n.opt.filter(t,e,r)},function(e){r++,n.opt.each(e)},function(){0===r&amp;&amp;n.opt.noMatch(e),n.opt.done(r)})}},{key:&quot;mark&quot;,value:function(e,t){var n=this;this.opt=t;var r=0,i=&quot;wrapMatches&quot;,o=this.getSeparatedKeywords(&quot;string&quot;==typeof e?[e]:e),a=o.keywords,s=o.length,c=this.opt.caseSensitive?&quot;&quot;:&quot;i&quot;;this.opt.acrossElements&amp;&amp;(i=&quot;wrapMatchesAcrossElements&quot;),0===s?this.opt.done(r):function e(t){var o=new RegExp(n.createRegExp(t),&quot;gm&quot;+c),u=0;n.log('Searching with expression &quot;'+o+'&quot;'),n[i](o,1,function(e,i){return n.opt.filter(i,t,r,u)},function(e){u++,r++,n.opt.each(e)},function(){0===u&amp;&amp;n.opt.noMatch(t),a[s-1]===t?n.opt.done(r):e(a[a.indexOf(t)+1])})}(a[0])}},{key:&quot;markRanges&quot;,value:function(e,t){var n=this;this.opt=t;var r=0,i=this.checkRanges(e);i&amp;&amp;i.length?(this.log(&quot;Starting to mark with the following ranges: &quot;+JSON.stringify(i)),this.wrapRangeFromIndex(i,function(e,t,r,i){return n.opt.filter(e,t,r,i)},function(e,t){r++,n.opt.each(e,t)},function(){n.opt.done(r)})):this.opt.done(r)}},{key:&quot;unmark&quot;,value:function(e){var t=this;this.opt=e;var n=this.opt.element?this.opt.element:&quot;*&quot;;n+=&quot;[data-markjs]&quot;,this.opt.className&amp;&amp;(n+=&quot;.&quot;+this.opt.className),this.log('Removal selector &quot;'+n+'&quot;'),this.iterator.forEachNode(NodeFilter.SHOW_ELEMENT,function(e){t.unwrapMatches(e)},function(e){var r=i.matches(e,n),o=t.matchesExclude(e);return!r||o?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT},this.opt.done)}},{key:&quot;opt&quot;,set:function(e){this._opt=r({},{element:&quot;&quot;,className:&quot;&quot;,exclude:[],iframes:!1,iframesTimeout:5e3,separateWordSearch:!0,diacritics:!0,synonyms:{},accuracy:&quot;partially&quot;,acrossElements:!1,caseSensitive:!1,ignoreJoiners:!1,ignoreGroups:0,ignorePunctuation:[],wildcards:&quot;disabled&quot;,each:function(){},noMatch:function(){},filter:function(){return!0},done:function(){},debug:!1,log:window.console},e)},get:function(){return this._opt}},{key:&quot;iterator&quot;,get:function(){return new i(this.ctx,this.opt.iframes,this.opt.exclude,this.opt.iframesTimeout)}}]),o}();return function(e){var t=this,n=new o(e);return this.mark=function(e,r){return n.mark(e,r),t},this.markRegExp=function(e,r){return n.markRegExp(e,r),t},this.markRanges=function(e,r){return n.markRanges(e,r),t},this.unmark=function(e){return n.unmark(e),t},this}});</pre>
+</div>
+<div created="20191108104757627" modified="20191111070516007" tags="" title="README">
 <pre>''WORK IN PROGRESS, DO NOT USE IN REAL WIKIS''
 
-Highlight the serched text: type `search` in the standard search, click outside of it (to hide the popup list of matches) and the searched text will be highlighted in the visible tiddlers. Press the `X` button near the standard search or delete the text in it to stop highlighting.
+Highlight the serched text: type `search text` in the standard search, click outside of it (to hide the popup list of matches) and the searched text will be highlighted in the visible tiddlers. Press the `X` button near the standard search or delete the text in it to stop highlighting.
 
-To try it out in your wiki, simply import [[HighlightSearchedText]] to it.</pre>
+To try it out in your wiki, simply import [[HighlightSearchedText]] and [[Mark.js]] to it.</pre>
 </div>
 
 </div>
