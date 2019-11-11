@@ -20,7 +20,7 @@ pages:
     # Generate as index.html: single HTML demo page
     - tiddlywiki --build index
     # Generate as .json file: drag-n-drop installer
-    - tiddlywiki --render '$:/plugins/MY-USER/MY-PLUGIN' tw5-MY-PLUGIN.json text/plain '$:/core/templates/json-tiddler'
+    - tiddlywiki --render '$:/plugins/bimlas/tw5-highlight-searched-text' tw5-highlight-searched-text.json text/plain '$:/core/templates/json-tiddler'
     # Serve a compressed version to speed up the loading
     # https://gitlab.com/gitlab-org/gitlab-pages/merge_requests/25
     - gzip --recursive --keep output
