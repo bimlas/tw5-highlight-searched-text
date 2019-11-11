@@ -1,0 +1,9 @@
+created: 20191111212742595
+modified: 20191111212902334
+tags: 
+title: What is Mark.js?
+type: text/vnd.tiddlywiki
+
+mark.js is a text highlighter written in JavaScript. It can be used to dynamically mark search terms or custom regular expressions and offers you built-in options like diacritics support, separate word search, custom synonyms, iframes support, custom filters, accuracy definition, custom element, custom class name and more.
+
+If you like this plugin, do not forget to [[star Mark.js as well|https://github.com/julmot/mark.js]]!
