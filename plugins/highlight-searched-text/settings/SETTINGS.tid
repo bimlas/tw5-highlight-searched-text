@@ -1,0 +1,13 @@
+tags:
+title: $:/plugins/bimlas/highlight-searched-text/settings/SETTINGS
+type: text/vnd.tiddlywiki
+
+! Settings
+
+The plugin works basically with standard search, but if you use a theme or a plugin that stores the term you are looking for elsewhere, you can specify the appropriate tiddler here.
+
+<$edit-text tiddler="$:/config/bimlas/highlight-searched-text/search-tiddler" tag="input"/>
+
+To find which one is the right tiddler, type `find-my-search-tiddler` in the search box and its name will be shown bellow.
+
+<<list-links filter:"[all[tiddlers]search[find-my-search-tiddler]] -[all[current]]">>

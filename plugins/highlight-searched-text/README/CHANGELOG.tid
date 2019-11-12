@@ -1,0 +1,15 @@
+tags:
+title: $:/plugins/bimlas/highlight-searched-text/README/CHANGELOG
+type: text/vnd.tiddlywiki
+
+I'm trying to follow the rules of [[Semantic Versioning|https://semver.org/]].
+
+!! Unreleased
+
+[[See GitLab for detailed change history of this release|https://gitlab.com/bimlas/tw5-highlight-searched-text/compare/v0.1.0...master]]
+
+* Add option to change the title of the tiddler containing the search term
+
+!! 0.1.0 - 2019-11-11
+
+* First public release

@@ -39,7 +39,8 @@ Add event listeners to highlight searched text
 	}
 
 	function searchTextBecameEmpty(title) {
-		return title === "$:/temp/search" && $tw.wiki.getTiddlerText("$:/temp/search") === ""
+		var searchTiddler = $tw.wiki.getTiddlerText("$:/config/bimlas/highlight-searched-text/search-tiddler");
+		return title === searchTiddler && $tw.wiki.getTiddlerText(searchTiddler) === ""
 	}
 
 	var
@@ -47,7 +48,8 @@ Add event listeners to highlight searched text
 		markInstance;
 
 	function updateHighlighting() {
-		var searchedText = $tw.wiki.getTiddlerText("$:/temp/search");
+		var searchTiddler = $tw.wiki.getTiddlerText("$:/config/bimlas/highlight-searched-text/search-tiddler");
+		var searchedText = $tw.wiki.getTiddlerText(searchTiddler);
 		if(!markInstance) markInstance = new Mark(document.getElementsByClassName("tc-story-river")[0])
 		markInstance.unmark();
 		if(searchedText !== "") markInstance.mark(searchedText);
