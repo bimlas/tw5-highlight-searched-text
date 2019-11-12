@@ -2,7 +2,7 @@
 	"title": "$:/plugins/bimlas/highlight-searched-text",
 	"description": "Highlight searched text",
 	"author": "bimlas",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"core-version": ">=5.1.18",
 	"source": "https://gitlab.com/bimlas/tw5-highlight-searched-text",
 	"plugin-type": "plugin",
