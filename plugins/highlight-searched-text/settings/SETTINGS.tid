@@ -8,6 +8,6 @@ The plugin works basically with standard search, but if you use a theme or a plu
 
 <$edit-text tiddler="$:/config/bimlas/highlight-searched-text/search-tiddler" tag="input"/>
 
-To find which one is the right tiddler, type `find-my-search-tiddler` in the search box and its name will be shown bellow.
+To find the tiddler that stores the search string, make a search for `find-my-search-tiddler` in your standard search field (e.g. in the sidebar). The tiddler will be shown bellow.
 
 <<list-links filter:"[all[tiddlers]search[find-my-search-tiddler]] -[all[current]]">>
