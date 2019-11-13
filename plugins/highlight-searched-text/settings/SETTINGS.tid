@@ -4,6 +4,8 @@ type: text/vnd.tiddlywiki
 
 ! Settings
 
+!! The system tiddler used for searching
+
 The plugin works basically with standard search, but if you use a theme or a plugin that stores the term you are looking for elsewhere, you can specify the appropriate tiddler here.
 
 <$edit-text tiddler="$:/config/bimlas/highlight-searched-text/search-tiddler" tag="input"/>
@@ -11,3 +13,9 @@ The plugin works basically with standard search, but if you use a theme or a plu
 To find the tiddler that stores the search string, make a search for `find-my-search-tiddler` in your standard search field (e.g. in the sidebar). The tiddler will be shown bellow.
 
 <<list-links filter:"[all[tiddlers]search[find-my-search-tiddler]] -[all[current]]">>
+
+!! Placement of sticky toolbar
+
+On a mobile phone, the sidebar (and the search box with it) are only visible at the top of the page. For easy access and use to search the site, a fixed toolbar appears on the page. Which part of the screen do you want this to appear on?
+
+TODO: top/down left/right

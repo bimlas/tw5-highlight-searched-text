@@ -1,0 +1,7 @@
+tags:
+title: $:/plugins/bimlas/highlight-searched-text/buttons/next-match
+type: text/vnd.tiddlywiki
+
+<$button class="tc-btn-invisible" tooltip="Scroll to next matches">
+    {{$:/core/images/down-arrow}}
+</$button>

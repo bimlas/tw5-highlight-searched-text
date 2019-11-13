@@ -1,0 +1,7 @@
+tags:
+title: $:/plugins/bimlas/highlight-searched-text/buttons/previous-match
+type: text/vnd.tiddlywiki
+
+<$button class="tc-btn-invisible" tooltip="Scroll to previous matches">
+    {{$:/core/images/up-arrow}}
+</$button>

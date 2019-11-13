@@ -1,0 +1,47 @@
+tags: $:/tags/Stylesheet
+title: $:/plugins/bimlas/highlight-searched-text/stylesheet
+type:
+
+.bimlas-highlight-searched-text.sticky-find-in-page {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    height: 1.6em;
+    font-size: 1.2em;
+    padding: 0;
+    background-color: <<colour tiddler-background>>;
+    border: 1px solid <<colour tiddler-border>>;
+    border-radius: 1em;
+    <<box-shadow "1px 1px 5px rgba(0, 0, 0, 0.3)">>
+}
+
+.bimlas-highlight-searched-text.sticky-find-in-page {
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+}
+
+.bimlas-highlight-searched-text.sticky-find-in-page > * {
+    margin: 0 0.25em;
+}
+
+.bimlas-highlight-searched-text.sticky-find-in-page input {
+    width: 100%;
+}
+
+.bimlas-highlight-searched-text.sticky-find-in-page button {
+    flex: 0 0 1em;
+}
+
+<$list filter="[[$:/state/bimlas/highlight-searched-text/toolbar]contains:text[show]]">
+    .bimlas-highlight-searched-text.sticky-find-in-page {
+        width: 100%;
+        border-radius: 0;
+    }
+</$list>
+
+@media (min-width: {{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}}) {
+    .bimlas-highlight-searched-text.sticky-find-in-page {
+        display: none;
+    }
+}

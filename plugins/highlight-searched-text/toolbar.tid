@@ -1,0 +1,21 @@
+tags: $:/tags/PageTemplate
+title: $:/plugins/bimlas/highlight-searched-text/toolbar
+type: text/vnd.tiddlywiki
+
+\define collapsed()
+    {{$:/plugins/bimlas/highlight-searched-text/buttons/show-toolbar}}
+\end
+
+\define expanded()
+    <$edit-text tiddler={{$:/config/bimlas/highlight-searched-text/search-tiddler}} placeholder="Find in page..." tag="input"/>
+    {{$:/plugins/bimlas/highlight-searched-text/buttons/next-match}}
+    {{$:/plugins/bimlas/highlight-searched-text/buttons/previous-match}}
+    {{$:/plugins/bimlas/highlight-searched-text/buttons/clear-input}}
+    {{$:/plugins/bimlas/highlight-searched-text/buttons/hide-toolbar}}
+\end
+
+<div class="bimlas-highlight-searched-text sticky-find-in-page">
+    <$list filter="[[$:/state/bimlas/highlight-searched-text/toolbar]contains:text[show]]" emptyMessage=<<collapsed>>>
+        <<expanded>>
+    </$list>
+</div>
