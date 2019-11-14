@@ -1,0 +1,6 @@
+list-after: $:/core/ui/SideBarSegments/search
+tags: $:/tags/SideBarSegment
+title: $:/plugins/bimlas/highlight-searched-text/sidebar
+type: text/vnd.tiddlywiki
+
+Find in page: {{$:/plugins/bimlas/highlight-searched-text/buttons/next-match}} {{$:/plugins/bimlas/highlight-searched-text/buttons/previous-match}}
