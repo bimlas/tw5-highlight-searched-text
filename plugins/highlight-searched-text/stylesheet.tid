@@ -5,7 +5,12 @@ type:
 .bimlas-highlight-searched-text.sticky-find-in-page {
     position: fixed;
     bottom: 0;
-    right: 0;
+    /*
+      Aligned to the right it disappears when eg. the search results in
+      $:/AdvancedSearch have such a long filename that the page becomes wider
+      than the screen.
+    */
+    left: 0;
     height: 1.6em;
     font-size: 1.2em;
     padding: 0;
@@ -35,7 +40,9 @@ type:
 
 <$list filter="[[$:/state/bimlas/highlight-searched-text/toolbar]contains:text[show]]">
     .bimlas-highlight-searched-text.sticky-find-in-page {
-        width: 100%;
+        width: 100vw;
+        /* Without this, the scrollbar would overlap the last button */
+        padding-right: 15px;
         border-radius: 0;
     }
 </$list>
