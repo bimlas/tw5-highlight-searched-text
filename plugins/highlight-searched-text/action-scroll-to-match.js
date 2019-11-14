@@ -14,6 +14,7 @@ Action widget to scroll to the next match in story river.
 
 	var Widget = require("$:/core/modules/widgets/widget.js").widget;
 	var updateHighlighting = require('$:/plugins/bimlas/highlight-searched-text/update-highlighting.js');
+	var previousMatch = null;
 
 	var ScrollToMatch = function(parseTreeNode,options) {
 		var self = this;
@@ -68,6 +69,7 @@ Action widget to scroll to the next match in story river.
 		$tw.pageScroller.scrollIntoView(targetMatch, function() {
 			return alignBoundingBoxToMiddleOfTheScreen(targetMatch.getBoundingClientRect());
 		});
+		previousMatch = targetMatch;
 		return true; // Action was invoked
 
 		function resultsAreFoundOnTheCurrentScreen() {
@@ -77,21 +79,25 @@ Action widget to scroll to the next match in story river.
 		}
 
 		function findBackwardFromThePreviousHalfScreen() {
+			var foundMatch;
 			for(var index = allMatches.length-1; index >= 0; index--) {
 				if(getPositionOfElementRelativeToScreen(allMatches[index]) < 0) {
-					return allMatches[index];
+					foundMatch = allMatches[index];
+					break;
 				}
 			}
-			return allMatches[allMatches.length-1];
+			return !foundMatch || (foundMatch === previousMatch) ? allMatches[allMatches.length-1] : foundMatch;
 		}
 
 		function findForwardFromTheNextHalfScreen() {
+			var foundMatch;
 			for(var index = 0; index < allMatches.length; index++) {
 				if(getPositionOfElementRelativeToScreen(allMatches[index]) > 0) {
-					return allMatches[index];
+					foundMatch = allMatches[index];
+					break;
 				}
 			}
-			return allMatches[0];
+			return !foundMatch || (foundMatch === previousMatch) ? allMatches[0] : foundMatch;
 		}
 
 		function alignBoundingBoxToMiddleOfTheScreen(boundingBox) {
@@ -101,8 +107,8 @@ Action widget to scroll to the next match in story river.
 
 		function getPositionOfElementRelativeToScreen(elem) {
 			var elementYOffset = elem.getBoundingClientRect().y;
-			if (elementYOffset < 0) return -1;
-			if (elementYOffset > window.innerHeight - 30 /* height of the toolbar */) return 1;
+			if (elementYOffset < window.outerHeight*0.25) return -1;
+			if (elementYOffset > (window.outerHeight-30/* height of the toolbar */)*0.75 ) return 1;
 			return 0;
 		}
 	};
