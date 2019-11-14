@@ -14,8 +14,10 @@ type: text/vnd.tiddlywiki
     {{$:/plugins/bimlas/highlight-searched-text/buttons/clear-input}}
 \end
 
-<div class="bimlas-highlight-searched-text sticky-find-in-page">
-    <$list filter="[[$:/state/bimlas/highlight-searched-text/toolbar]contains:text[show]]" emptyMessage=<<collapsed>>>
-        <<expanded>>
-    </$list>
-</div>
+<$list filter="[[$:/config/bimlas/highlight-searched-text/toolbar-visibility]!contains:text[never]]">
+    <div class="bimlas-highlight-searched-text sticky-find-in-page">
+        <$list filter="[[$:/state/bimlas/highlight-searched-text/toolbar]contains:text[show]]" emptyMessage=<<collapsed>>>
+            <<expanded>>
+        </$list>
+    </div>
+</$list>

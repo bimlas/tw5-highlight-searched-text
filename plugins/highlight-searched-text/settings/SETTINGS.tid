@@ -13,3 +13,13 @@ The plugin works basically with standard search, but if you use a theme or a plu
 To find the tiddler that stores the search string, make a search for `find-my-search-tiddler` in your standard search field (e.g. in the sidebar). The tiddler will be shown bellow.
 
 <<list-links filter:"[all[tiddlers]search[find-my-search-tiddler]] -[all[current]]">>
+
+!! Toolbar visibility
+
+In a narrow browser or smartphone, the sidebar appears at the top of the page, so we can't conveniently use the search box there to search within the page. To fix this, we have a toolbar (magnifying glass icon in the corner of the window). If you wish, you can turn this off or make it visible in wider browsers (it can also be useful if, for example, your theme hides the sidebar).
+
+<$radio tiddler="$:/config/bimlas/highlight-searched-text/toolbar-visibility" value="never"> Never </$radio>
+
+<$radio tiddler="$:/config/bimlas/highlight-searched-text/toolbar-visibility" value="smallscreen"> Only on small screens </$radio>
+
+<$radio tiddler="$:/config/bimlas/highlight-searched-text/toolbar-visibility" value="allways"> Allways </$radio>
