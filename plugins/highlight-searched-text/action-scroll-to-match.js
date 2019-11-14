@@ -13,6 +13,7 @@ Action widget to scroll to the next match in story river.
 	"use strict";
 
 	var Widget = require("$:/core/modules/widgets/widget.js").widget;
+	var updateHighlighting = require('$:/plugins/bimlas/highlight-searched-text/update-highlighting.js');
 
 	var ScrollToMatch = function(parseTreeNode,options) {
 		var self = this;
@@ -56,8 +57,10 @@ Action widget to scroll to the next match in story river.
 	*/
 	ScrollToMatch.prototype.invokeAction = function(triggeringWidget,event) {
 		var self = this;
+		var isHighlightingUpdated = updateHighlighting();
 		var allMatches = $tw.pageContainer.querySelectorAll('mark');
-		if(allMatches.length === 0) return;
+		if(allMatches.length === 0) return true;
+		if(isHighlightingUpdated && resultsAreFoundOnTheCurrentScreen()) return true;
 
 		var indexOfClosestMatch = this.actionDirection === "previous"
 			? findBackwardFromThePreviousHalfScreen()
@@ -69,6 +72,13 @@ Action widget to scroll to the next match in story river.
 			return boundingBox;
 		});
 		return true; // Action was invoked
+
+		function resultsAreFoundOnTheCurrentScreen() {
+			return Array.from(allMatches).reduce(function(accumulator,match) {
+				var elementYOffset = match.getBoundingClientRect().y;
+				return accumulator || (elementYOffset >= 0 && elementYOffset <= window.innerHeight);
+			}, false);
+		}
 
 		function findBackwardFromThePreviousHalfScreen() {
 			for(var index = allMatches.length-1; index >= 0; index--) {
