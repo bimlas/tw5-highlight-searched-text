@@ -4,9 +4,11 @@ type: text/vnd.tiddlywiki
 
 I'm trying to follow the rules of [[Semantic Versioning|https://semver.org/]].
 
-!! Unreleased
+!! 0.2.0 - 2019-11-18
 
-* Add buttons and a toolbar (for narrow screens) to navigate between matches on page ("find in page" feature of browsers)
+[[See GitLab for detailed change history of this release|https://gitlab.com/bimlas/tw5-highlight-searched-text/compare/v0.1.1...v0.2.0]]
+
+* Add buttons and a toolbar to navigate between matches on page ("find in page" feature of browsers)
 
 !! 0.1.1 - 2019-11-12
 
