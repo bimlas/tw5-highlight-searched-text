@@ -6,6 +6,8 @@ type: text/vnd.tiddlywiki
 
 For example, type `search text` in the standard search and select one of the results, or just click outside of it (to hide the popup list): each of ''the words you search for will be highlighted separately in the text of the tiddlers''.
 
+In the sidebar above the standard search, there are "Scroll to next / previous matches" buttons to navigate through the results on the page. In the case of a narrow screen (or according to your preferences), a toolbar will appear at the bottom of the window where you can access the same functions.
+
 Since this doesn't require a "Find in page" browser, ''it is convenient to use on [[TiddlyDesktop|https://tiddlywiki.com/#TiddlyDesktop]] and Android'' (via [[Tiddloid|https://tiddlywiki.com/#Saving%20on%20Android]], [[Quinoid|https://github.com/Marxsal/Quinoid01]], etc).
 
 The plugin uses the [[Mark.js library|https://markjs.io/]].
