@@ -15,7 +15,9 @@ The plugin uses the [[Mark.js library|https://markjs.io/]].
 
 !! Known issues
 
-If the text of a tiddler is wider than the story river, it will not align the toolbar at the bottom of the screen, but more lower, so it will not be visible. For example, search for "script" in the Shadows tab of [[$:/AdvancedSearch]] and make your browser as narrow as possible: if you scroll down and up, you will understand what I mean. This is not a bug in the plugin, but in the TiddlyWiki (or rather in the browsers).
+The "find-in-page" feature does not work properly with [[JD's Material theme|http://j.d.material.tiddlyspot.com/]] because when you jump to the next hit, it will be aligned with the top of the page instead of the middle of the page.
+
+If the text of a tiddler is wider than the story river, it will not align the "find-in-page" toolbar at the bottom of the screen, but more lower, so it will not be visible. For example, search for "script" in the Shadows tab of [[$:/AdvancedSearch]] and make your browser as narrow as possible: if you scroll down and up, you will understand what I mean. This is not a bug in the plugin, but in the TiddlyWiki (or rather in the browsers).
 
 !! Installation instructions
 
