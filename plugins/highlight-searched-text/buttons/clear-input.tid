@@ -1,0 +1,7 @@
+tags:
+title: $:/plugins/bimlas/highlight-searched-text/buttons/clear-input
+type: text/vnd.tiddlywiki
+
+<$button class="tc-btn-invisible bimlas-clear-input" tooltip="Clear text input" set={{$:/config/bimlas/highlight-searched-text/search-tiddler}} setTo="">
+    {{$:/core/images/close-button}}
+</$button>

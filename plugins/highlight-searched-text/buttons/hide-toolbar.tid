@@ -1,0 +1,7 @@
+tags:
+title: $:/plugins/bimlas/highlight-searched-text/buttons/hide-toolbar
+type: text/vnd.tiddlywiki
+
+<$button class="tc-btn-invisible bimlas-hide-toolbar" tooltip="Hide this toolbar" set="$:/state/bimlas/highlight-searched-text/toolbar" setTo="hide">
+    {{$:/core/images/advanced-search-button}}
+</$button>

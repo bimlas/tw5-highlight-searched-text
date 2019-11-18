@@ -1,0 +1,7 @@
+tags:
+title: $:/plugins/bimlas/highlight-searched-text/buttons/show-toolbar
+type: text/vnd.tiddlywiki
+
+<$button class="tc-btn-invisible bimlas-show-toolbar" tooltip="Find in page" set="$:/state/bimlas/highlight-searched-text/toolbar" setTo="show">
+    {{$:/core/images/advanced-search-button}}
+</$button>

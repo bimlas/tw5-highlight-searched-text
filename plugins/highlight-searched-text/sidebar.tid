@@ -1,0 +1,15 @@
+list-before: $:/core/ui/SideBarSegments/search
+tags: $:/tags/SideBarSegment
+title: $:/plugins/bimlas/highlight-searched-text/sidebar
+type: text/vnd.tiddlywiki
+
+<div class="bimlas-highlight-searched-text bimlas-sidebar">
+	<!--
+		If emptyMessage were not specified, the height of the sibebar would be
+		variable (because find-in-page is either visible or not), so I will
+		display a placeholder if there is no search term.
+	-->
+	<$list filter="[{$:/config/bimlas/highlight-searched-text/search-tiddler}get[text]]" emptyMessage="&nbsp;">
+		Find in page: {{$:/plugins/bimlas/highlight-searched-text/buttons/next-match}} {{$:/plugins/bimlas/highlight-searched-text/buttons/previous-match}}
+	</$list>
+</div>
