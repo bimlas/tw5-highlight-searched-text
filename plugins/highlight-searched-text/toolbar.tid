@@ -7,11 +7,14 @@ type: text/vnd.tiddlywiki
 \end
 
 \define expanded()
-    {{$:/plugins/bimlas/highlight-searched-text/buttons/hide-toolbar}}
-    <$edit-text tiddler={{$:/config/bimlas/highlight-searched-text/search-tiddler}} placeholder="Find in page..." tag="input"/>
-    {{$:/plugins/bimlas/highlight-searched-text/buttons/next-match}}
-    {{$:/plugins/bimlas/highlight-searched-text/buttons/previous-match}}
-    {{$:/plugins/bimlas/highlight-searched-text/buttons/clear-input}}
+        {{$:/plugins/bimlas/highlight-searched-text/buttons/hide-toolbar}}
+        <$keyboard key="enter">
+            <$action-scroll-to-match $direction="next"/>
+            <$edit-text tiddler={{$:/config/bimlas/highlight-searched-text/search-tiddler}} placeholder="Find in page..." tag="input"/>
+        </$keyboard>
+        {{$:/plugins/bimlas/highlight-searched-text/buttons/next-match}}
+        {{$:/plugins/bimlas/highlight-searched-text/buttons/previous-match}}
+        {{$:/plugins/bimlas/highlight-searched-text/buttons/clear-input}}
 \end
 
 <$list filter="[[$:/config/bimlas/highlight-searched-text/toolbar-visibility]!contains:text[never]]">
