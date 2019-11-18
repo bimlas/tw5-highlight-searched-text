@@ -1,0 +1,12 @@
+author: bimlas
+core-version: >=5.1.18
+created: 20191118154913966
+dependents: 
+description: Disqus comments
+list: README/README README/setup settings/settings README/FAQ README/CHANGELOG
+modified: 20191118154913966
+plugin-type: plugin
+source: https://gitlab.com/bimlas/tw5-disqus
+title: $:/plugins/bimlas/disqus
+type: application/json
+version: 1.1.2
