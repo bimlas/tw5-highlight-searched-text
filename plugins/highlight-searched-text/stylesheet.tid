@@ -14,6 +14,7 @@ type:
       than the screen.
     */
     left: 0;
+    z-index: 500;
     height: 30px;
     font-size: 18px;
     padding: 0;
@@ -32,7 +33,7 @@ type:
 }
 
 .bimlas-highlight-searched-text.sticky-find-in-page button {
-    flex: 0 0 1em;
+    flex: 0 0 30px;
 }
 
 <$list filter="[[$:/state/bimlas/highlight-searched-text/toolbar]contains:text[show]]">

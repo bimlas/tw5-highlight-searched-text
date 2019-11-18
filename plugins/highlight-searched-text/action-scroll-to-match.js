@@ -14,10 +14,8 @@ Action widget to scroll to the next match in story river.
 
 	var Widget = require("$:/core/modules/widgets/widget.js").widget;
 	var updateHighlighting = require('$:/plugins/bimlas/highlight-searched-text/update-highlighting.js');
-	var previousMatch = null;
 
 	var ScrollToMatch = function(parseTreeNode,options) {
-		var self = this;
 		this.initialise(parseTreeNode,options);
 	};
 
@@ -57,6 +55,7 @@ Action widget to scroll to the next match in story river.
 	Invoke the action associated with this widget
 	*/
 	ScrollToMatch.prototype.invokeAction = function(triggeringWidget,event) {
+		var self = this;
 		var isHighlightingUpdated = updateHighlighting();
 		var allMatches = $tw.pageContainer.querySelectorAll('mark');
 		if(allMatches.length === 0) return true;
@@ -69,11 +68,11 @@ Action widget to scroll to the next match in story river.
 		$tw.pageScroller.scrollIntoView(targetMatch, function() {
 			return alignBoundingBoxToMiddleOfTheScreen(targetMatch.getBoundingClientRect());
 		});
-		previousMatch = targetMatch;
+		this.previousMatch = targetMatch;
 		return true; // Action was invoked
 
 		function resultsAreFoundOnTheCurrentScreen() {
-			return Array.from(allMatches).reduce(function(accumulator,match) {
+			return [].slice.call(allMatches).reduce(function(accumulator,match) {
 				return accumulator || (getPositionOfElementRelativeToScreen(match) === 0);
 			}, false);
 		}
@@ -86,7 +85,7 @@ Action widget to scroll to the next match in story river.
 					break;
 				}
 			}
-			return !foundMatch || (foundMatch === previousMatch) ? allMatches[allMatches.length-1] : foundMatch;
+			return !foundMatch || (foundMatch === self.previousMatch) ? allMatches[allMatches.length-1] : foundMatch;
 		}
 
 		function findForwardFromTheNextHalfScreen() {
@@ -97,18 +96,22 @@ Action widget to scroll to the next match in story river.
 					break;
 				}
 			}
-			return !foundMatch || (foundMatch === previousMatch) ? allMatches[0] : foundMatch;
+			return !foundMatch || (foundMatch === self.previousMatch) ? allMatches[0] : foundMatch;
 		}
 
 		function alignBoundingBoxToMiddleOfTheScreen(boundingBox) {
-			boundingBox.y -= window.innerHeight / 2;
-			return boundingBox;
+			return {
+				left: boundingBox.left,
+				top: boundingBox.top - window.innerHeight/2,
+				width: boundingBox.width,
+				height: boundingBox.height
+			};
 		}
 
 		function getPositionOfElementRelativeToScreen(elem) {
-			var elementYOffset = elem.getBoundingClientRect().y;
-			if (elementYOffset < window.outerHeight*0.25) return -1;
-			if (elementYOffset > (window.outerHeight-30/* height of the toolbar */)*0.75 ) return 1;
+			var elementYOffset = elem.getBoundingClientRect().top;
+			if (elementYOffset < window.innerHeight*0.25) return -1;
+			if (elementYOffset > (window.innerHeight-30*window.devicePixelRatio/* height of the toolbar */)*0.75 ) return 1;
 			return 0;
 		}
 	};

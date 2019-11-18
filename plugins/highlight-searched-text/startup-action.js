@@ -39,7 +39,7 @@ Add event listeners to highlight searched text
 	};
 
 	function searchPopupBecameHidden(title,value) {
-		return title.startsWith("$:/state/popup/search-dropdown") && value.deleted
+		return (title.indexOf("$:/state/popup/search-dropdown") === 0) && value.deleted
 	}
 
 	function searchTextBecameEmpty(title) {
