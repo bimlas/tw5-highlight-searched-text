@@ -10,7 +10,7 @@ type: text/vnd.tiddlywiki
         {{$:/plugins/bimlas/highlight-searched-text/buttons/hide-toolbar}}
         <$keyboard key="enter">
             <$action-scroll-to-match $direction="next"/>
-            <$edit-text tiddler={{$:/config/bimlas/highlight-searched-text/search-tiddler}} placeholder="Find in page..." tag="input"/>
+            <$edit-text tiddler={{$:/config/bimlas/highlight-searched-text/search-tiddler}} placeholder="Find in page..." tag="input" type="search"/>
         </$keyboard>
         {{$:/plugins/bimlas/highlight-searched-text/buttons/next-match}}
         {{$:/plugins/bimlas/highlight-searched-text/buttons/previous-match}}
