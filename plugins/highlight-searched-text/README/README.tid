@@ -19,6 +19,21 @@ The "find-in-page" feature does not work properly with [[JD's Material theme|htt
 
 If the text of a tiddler is wider than the story river, it will not align the "find-in-page" toolbar at the bottom of the screen, but more lower, so it will not be visible. For example, search for "script" in the Shadows tab of [[$:/AdvancedSearch]] and make your browser as narrow as possible: if you scroll down and up, you will understand what I mean. This is not a bug in the plugin, but in the TiddlyWiki (or rather in the browsers).
 
+!! Tips
+
+!!! Colorized icons
+
+To colorize the next / previous icons, create a tiddler (name can be anything), add the <<tag "$:/tags/Stylesheet">> tag and copy the following code into it.
+
+```css
+.bimlas-highlight-searched-text.bimlas-sidebar .bimlas-next-match svg, .bimlas-highlight-searched-text.bimlas-sticky-find-in-page .bimlas-next-match svg {
+  fill: green;
+}
+.bimlas-highlight-searched-text.bimlas-sidebar .bimlas-previous-match svg, .bimlas-highlight-searched-text.bimlas-sticky-find-in-page .bimlas-previous-match svg {
+  fill: red;
+}
+```
+
 !! Installation instructions
 
 To add the plugin to your own ~TiddlyWiki5, just drag this link to the browser window:
