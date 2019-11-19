@@ -4,6 +4,13 @@ type: text/vnd.tiddlywiki
 
 I'm trying to follow the rules of [[Semantic Versioning|https://semver.org/]].
 
+!! Unreleased
+
+[[See GitLab for detailed change history of this release|https://gitlab.com/bimlas/tw5-highlight-searched-text/compare/v0.2.0...master]]
+
+* Add counter
+* Move templates to their own directory
+
 !! 0.2.0 - 2019-11-18
 
 [[See GitLab for detailed change history of this release|https://gitlab.com/bimlas/tw5-highlight-searched-text/compare/v0.1.1...v0.2.0]]
