@@ -10,6 +10,6 @@ type: text/vnd.tiddlywiki
 		display a placeholder if there is no search term.
 	-->
 	<$list filter="[{$:/config/bimlas/highlight-searched-text/search-tiddler}get[text]]" emptyMessage="&nbsp;">
-		Find in page: {{$:/plugins/bimlas/highlight-searched-text/buttons/next-match}} {{$:/plugins/bimlas/highlight-searched-text/buttons/previous-match}}
+		Find in page: {{$:/plugins/bimlas/highlight-searched-text/buttons/next-match}} {{$:/plugins/bimlas/highlight-searched-text/buttons/previous-match}} {{$:/plugins/bimlas/highlight-searched-text/counter}}
 	</$list>
 </div>
