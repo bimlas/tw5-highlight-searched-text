@@ -5,7 +5,7 @@ type: text/vnd.tiddlywiki
 I'm trying to follow the rules of [[Semantic Versioning|https://semver.org/]].
 
 
-!! Unreleased
+!! 0.3.1 - 2019-11-19
 
 [[See GitLab for detailed change history of this release|https://gitlab.com/bimlas/tw5-highlight-searched-text/compare/v0.3.0...v0.3.1]]
 
