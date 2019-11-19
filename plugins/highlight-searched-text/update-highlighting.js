@@ -21,10 +21,9 @@ module.exports = function(force) {
 
 	if(!markInstance) markInstance = new Mark(document.getElementsByClassName("tc-story-river")[0]);
 	markInstance.unmark();
-	setCounterTiddler(0);
 	if(searchedText !== "") markInstance.mark(searchedText, {
 		filter: function(node, term, count) {
-			totalCounter = count;
+			totalCounter = count + 1;
 			return true;
 		}
 	});
