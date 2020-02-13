@@ -4,9 +4,9 @@ type: text/vnd.tiddlywiki
 
 I'm trying to follow the rules of [[Semantic Versioning|https://semver.org/]].
 
-!! Unreleased
+!! 0.4.0 - 2020-02-13
 
-[[See GitLab for detailed change history of this release|https://gitlab.com/bimlas/tw5-highlight-searched-text/compare/v0.3.2...master]]
+[[See GitLab for detailed change history of this release|https://gitlab.com/bimlas/tw5-highlight-searched-text/compare/v0.3.2...v0.4.0]]
 
 * Add option to change toolbar height and position
 
