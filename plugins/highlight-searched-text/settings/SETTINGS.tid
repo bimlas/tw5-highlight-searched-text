@@ -23,3 +23,5 @@ In a narrow browser or smartphone, the sidebar appears at the top of the page, s
 <$radio tiddler="$:/config/bimlas/highlight-searched-text/toolbar-visibility" value="smallscreen"> Only on small screens </$radio>
 
 <$radio tiddler="$:/config/bimlas/highlight-searched-text/toolbar-visibility" value="allways"> Allways </$radio>
+
+Height: <$edit-text tiddler="$:/config/bimlas/highlight-searched-text/toolbar-height" tag="input"/>
