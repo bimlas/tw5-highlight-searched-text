@@ -4,9 +4,9 @@ type: text/vnd.tiddlywiki
 
 I'm trying to follow the rules of [[Semantic Versioning|https://semver.org/]].
 
-!! Unreleased
+!! 0.3.2 - 2020-02-13
 
-[[See GitLab for detailed change history of this release|https://gitlab.com/bimlas/tw5-highlight-searched-text/compare/v0.3.1...dev]]
+[[See GitLab for detailed change history of this release|https://gitlab.com/bimlas/tw5-highlight-searched-text/compare/v0.3.1...0.3.2]]
 
 * Search was performed inside CodeMirror texteditor which caused RSOD
 
