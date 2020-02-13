@@ -7,7 +7,7 @@ type:
     display: flex;
     align-items: center;
     position: fixed;
-    bottom: 0;
+    bottom: {{$:/config/bimlas/highlight-searched-text/toolbar-offset}};
     /*
       Aligned to the right it disappears when eg. the search results in
       $:/AdvancedSearch have such a long filename that the page becomes wider
