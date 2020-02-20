@@ -56,3 +56,9 @@ type:
         }
     }
 </$list>
+
+@media print {
+    .bimlas-highlight-searched-text {
+        display: none !important;
+    }
+}
