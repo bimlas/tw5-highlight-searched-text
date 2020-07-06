@@ -12,9 +12,9 @@ var
 	markInstance;
 	previousSearchedText = '';
 
-module.exports = function(force) {
+module.exports = function(force = false, customSearchedText = null) {
 	var searchTiddler = $tw.wiki.getTiddlerText("$:/config/bimlas/highlight-searched-text/search-tiddler");
-	var searchedText = $tw.wiki.getTiddlerText(searchTiddler);
+	var searchedText = customSearchedText !== null ? customSearchedText : $tw.wiki.getTiddlerText(searchTiddler);
 	var totalCounter = 0;
 
 	if((searchedText === previousSearchedText) && !force) return false;

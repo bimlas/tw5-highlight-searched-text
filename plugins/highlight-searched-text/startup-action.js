@@ -36,6 +36,14 @@ Add event listeners to highlight searched text
 			}, $tw.wiki.getTiddlerText("$:/config/AnimationDuration"));
 			return (event);
 		});
+		$tw.hooks.addHook("th-editing-tiddler",function(event) {
+			clearHighlighting();
+			return (event);
+		});
+		$tw.hooks.addHook("th-new-tiddler",function(event) {
+			clearHighlighting();
+			return (event);
+		});
 	};
 
 	function searchPopupBecameHidden(title,value) {
@@ -45,5 +53,11 @@ Add event listeners to highlight searched text
 	function searchTextBecameEmpty(title) {
 		var searchTiddler = $tw.wiki.getTiddlerText("$:/config/bimlas/highlight-searched-text/search-tiddler");
 		return title === searchTiddler && $tw.wiki.getTiddlerText(searchTiddler) === ""
+	}
+
+	function clearHighlighting() {
+		setTimeout(function() {
+			updateHighlighting(true, "");
+		}, $tw.wiki.getTiddlerText("$:/config/AnimationDuration"));
 	}
 })();
