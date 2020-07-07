@@ -23,7 +23,7 @@ module.exports = function(force = false, customSearchedText = null) {
 	markInstance.unmark();
 	if(searchedText !== "") markInstance.mark(searchedText, {
 		exclude: [
-			".tc-edit-texteditor *"
+			".tc-tiddler-edit-frame *"
 		],
 		filter: function(node, term, count) {
 			totalCounter = count + 1;
