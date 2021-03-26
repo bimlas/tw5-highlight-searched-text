@@ -33,3 +33,9 @@ Offset from bottom: <$edit-text tiddler="$:/config/bimlas/highlight-searched-tex
 ```
 calc(100% - {{$:/config/bimlas/highlight-searched-text/toolbar-height}})
 ```
+
+!! Auto highlight
+
+If you want the highlight to be performed only when you click the "Go to next / previous matches" buttons, turn off this option.
+
+<$checkbox tiddler="$:/config/bimlas/highlight-searched-text/auto-highlight" field="text" checked="yes" unchecked="no"> Automatically highlight matches </$checkbox>

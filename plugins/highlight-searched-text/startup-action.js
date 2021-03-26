@@ -24,16 +24,18 @@ Add event listeners to highlight searched text
 	exports.startup = function() {
 		$tw.wiki.addEventListener("change",function(changedTiddlers) {
 			if(Object.keys(changedTiddlers).reduce(function(accumulator,current) {
-				return accumulator && (!(searchTextBecameEmpty(current) || searchPopupBecameHidden(current,changedTiddlers[current])))
-			},true))
-				return;
-			updateHighlighting();
+				return accumulator || searchTextBecameEmpty(current) || (autoHighlightEnabled() && searchPopupBecameHidden(current,changedTiddlers[current]))
+			},false)) {
+				updateHighlighting();
+			}
 		});
 		$tw.hooks.addHook("th-navigating",function(event) {
-			// TODO: It should update highlight only if navigated from search results - how to check this?
-			setTimeout(function() {
-			  updateHighlighting(true);
-			}, $tw.wiki.getTiddlerText("$:/config/AnimationDuration"));
+			if(autoHighlightEnabled()) {
+			  // TODO: It should update highlight only if navigated from search results - how to check this?
+			  setTimeout(function() {
+			    updateHighlighting(true);
+			  }, $tw.wiki.getTiddlerText("$:/config/AnimationDuration"));
+		    }
 			return (event);
 		});
 		$tw.hooks.addHook("th-editing-tiddler",function(event) {
@@ -45,6 +47,10 @@ Add event listeners to highlight searched text
 			return (event);
 		});
 	};
+
+	function autoHighlightEnabled() {
+		return $tw.wiki.getTiddlerText("$:/config/bimlas/highlight-searched-text/auto-highlight") === "yes";
+	}
 
 	function searchPopupBecameHidden(title,value) {
 		return (title.indexOf("$:/state/popup/search-dropdown") === 0) && value.deleted
