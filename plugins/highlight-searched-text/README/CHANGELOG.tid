@@ -8,6 +8,8 @@ I'm trying to follow the rules of [[Semantic Versioning|https://semver.org/]].
 
 [[See GitLab for detailed change history of this release|https://gitlab.com/bimlas/tw5-highlight-searched-text/compare/v0.4.0...dev]]
 
+* Add option to disable automatic highlighting
+* Fixed a bug that could have caused RSOD in some cases
 * Hide toolbar on printing
 
 !! 0.4.0 - 2020-02-13
