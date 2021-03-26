@@ -1,5 +1,6 @@
 {
 	"title": "$:/plugins/bimlas/highlight-searched-text",
+	"caption": "Highlight searched text",
 	"description": "Highlight searched text",
 	"author": "bimlas",
 	"version": "0.4.0",
