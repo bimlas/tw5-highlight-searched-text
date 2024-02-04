@@ -1,12 +1,11 @@
-:demo-page: https://bimlas.gitlab.io/tw5-highlight-searched-text/
-:json: https://bimlas.gitlab.io/tw5-highlight-searched-text/tw5-highlight-searched-text.json
+:demo-page: https://bimlas.github.io/tw5-highlight-searched-text/
+:json: https://bimlas.github.io/tw5-highlight-searched-text/tw5-highlight-searched-text.json
 
 = Highlight searched text plugin for TiddlyWiki 5
 
 For details, see the link:{demo-page}[demo page].
 
-* https://gitlab.com/bimlas/tw5-highlight-searched-text/ (official repository)
-* https://github.com/bimlas/tw5-highlight-searched-text/ (mirror, please star if you like the plugin)
+* https://github.com/bimlas/tw5-highlight-searched-text/ (please star if you like the plugin)
 
 == How to install?
 

@@ -12,9 +12,8 @@ Since this doesn't require a "Find in page" browser, ''it is convenient to use o
 
 The plugin uses the [[Mark.js library|https://markjs.io/]].
 
-* https://bimlas.gitlab.io/tw5-highlight-searched-text (demo + install)
-* https://gitlab.com/bimlas/tw5-highlight-searched-text (main repository)
-* https://github.com/bimlas/tw5-highlight-searched-text (mirror, ''please star if you like the plugin'')
+* https://bimlas.github.io/tw5-highlight-searched-text (demo + install)
+* https://github.com/bimlas/tw5-highlight-searched-text (''please star if you like the plugin'')
 
 !! Known issues
 

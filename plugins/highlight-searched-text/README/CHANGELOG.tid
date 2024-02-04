@@ -6,7 +6,7 @@ I'm trying to follow the rules of [[Semantic Versioning|https://semver.org/]].
 
 !! 0.5.0 - 2021-03-26
 
-[[See GitLab for detailed change history of this release|https://gitlab.com/bimlas/tw5-highlight-searched-text/compare/v0.4.0...v0.5.0]]
+[[See GitHub for detailed change history of this release|https://github.com/bimlas/tw5-highlight-searched-text/compare/v0.4.0...v0.5.0]]
 
 * Add option to disable automatic highlighting
 * Fixed a bug that could have caused RSOD in some cases
@@ -14,38 +14,38 @@ I'm trying to follow the rules of [[Semantic Versioning|https://semver.org/]].
 
 !! 0.4.0 - 2020-02-13
 
-[[See GitLab for detailed change history of this release|https://gitlab.com/bimlas/tw5-highlight-searched-text/compare/v0.3.2...v0.4.0]]
+[[See GitHub for detailed change history of this release|https://github.com/bimlas/tw5-highlight-searched-text/compare/v0.3.2...v0.4.0]]
 
 * Add option to change toolbar height and position
 
 !! 0.3.2 - 2020-02-13
 
-[[See GitLab for detailed change history of this release|https://gitlab.com/bimlas/tw5-highlight-searched-text/compare/v0.3.1...0.3.2]]
+[[See GitHub for detailed change history of this release|https://github.com/bimlas/tw5-highlight-searched-text/compare/v0.3.1...0.3.2]]
 
 * Search was performed inside CodeMirror texteditor which caused RSOD
 
 !! 0.3.1 - 2019-11-19
 
-[[See GitLab for detailed change history of this release|https://gitlab.com/bimlas/tw5-highlight-searched-text/compare/v0.3.0...v0.3.1]]
+[[See GitHub for detailed change history of this release|https://github.com/bimlas/tw5-highlight-searched-text/compare/v0.3.0...v0.3.1]]
 
 * The counter showed n-1 matches
 
 !! 0.3.0 - 2019-11-19
 
-[[See GitLab for detailed change history of this release|https://gitlab.com/bimlas/tw5-highlight-searched-text/compare/v0.2.0...v0.3.0]]
+[[See GitHub for detailed change history of this release|https://github.com/bimlas/tw5-highlight-searched-text/compare/v0.2.0...v0.3.0]]
 
 * Add counter
 * Move templates to their own directory
 
 !! 0.2.0 - 2019-11-18
 
-[[See GitLab for detailed change history of this release|https://gitlab.com/bimlas/tw5-highlight-searched-text/compare/v0.1.1...v0.2.0]]
+[[See GitHub for detailed change history of this release|https://github.com/bimlas/tw5-highlight-searched-text/compare/v0.1.1...v0.2.0]]
 
 * Add buttons and a toolbar to navigate between matches on page ("find in page" feature of browsers)
 
 !! 0.1.1 - 2019-11-12
 
-[[See GitLab for detailed change history of this release|https://gitlab.com/bimlas/tw5-highlight-searched-text/compare/v0.1.0...v0.1.1]]
+[[See GitHub for detailed change history of this release|https://github.com/bimlas/tw5-highlight-searched-text/compare/v0.1.0...v0.1.1]]
 
 * Add option to change the title of the tiddler containing the search term
 

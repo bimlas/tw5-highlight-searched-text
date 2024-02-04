@@ -5,7 +5,7 @@
 	"author": "bimlas",
 	"version": "0.5.0",
 	"core-version": ">=5.1.18",
-	"source": "https://gitlab.com/bimlas/tw5-highlight-searched-text",
+	"source": "https://github.com/bimlas/tw5-highlight-searched-text",
 	"plugin-type": "plugin",
 	"list": "README/README settings/SETTINGS README/CHANGELOG"
 }
